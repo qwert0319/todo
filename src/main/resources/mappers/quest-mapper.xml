@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="quests">
+	<select id="findAll" resultType="org.edupoll.model.Quest">
+		SELECT * FROM QUESTS WHERE END_DATE BETWEEN SYSDATE-1 AND SYSDATE+7
+	</select>
+	<update id="update" parameterType="org.edupoll.model.Quest">
+		UPDATE QUESTS SET JOIN_CNT = #{joinCnt }
+		WHERE ID = #{id}
+	</update>
+	<select id="findById" resultType="org.edupoll.model.Quest" parameterType="int">
+		SELECT * FROM QUESTS WHERE
+		ID=#{id}
+	</select>
+</mapper>

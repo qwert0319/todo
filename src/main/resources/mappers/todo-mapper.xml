@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="todos">
+	<select id="findByOwner" resultType="org.edupoll.model.Todo"
+		parameterType="string">
+		SELECT * FROM TODOS WHERE OWNER = #{owner}
+	</select>
+	<select id="findById" resultType="org.edupoll.model.Todo">
+		SELECT * FROM TODOS WHERE ID = #{id}
+	</select>
+	<insert id="create">
+		INSERT INTO TODOS VALUES(#{id}, #{owner}, #{description}, #{targetDate}, #{done, jdbcType=VARCHAR})
+	</insert>
+	<delete id="deleteById">
+		DELETE FROM TODOS WHERE ID= #{id}
+	</delete>
+	<update id="update">
+		UPDATE TODOS SET
+		DESCRIPTION=#{description}, 
+		TARGET_DATE=#{targetDate}, 
+		DONE=#{done,jdbcType=VARCHAR } 
+		WHERE ID=#{id}
+	</update>
+</mapper>
